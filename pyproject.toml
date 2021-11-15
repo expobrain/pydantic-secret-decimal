@@ -21,11 +21,12 @@ repository = "https://github.com/expobrain/pydantic-secret-decimal"
 authors = ["Daniele Esposti <daniele.esposti@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-packages = [{ include = "pydantic_secret_decimal" }]
+# packages = [{ include = "pydantic_secret_decimal" }]
 
 
 [tool.poetry.dependencies]
 python = ">=3.7,<4"
+pydantic = "^1.8"
 
 [tool.poetry.dev-dependencies]
 autoflake = "^1.4"
@@ -35,6 +36,7 @@ mypy = "^0.910"
 pdbpp = "^0.10.3"
 pytest = "^6.2.5"
 pytest-cov = "^3.0.0"
+flake8 = "^4.0.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
