@@ -15,7 +15,7 @@ skip_glob = ".venv,venv"
 
 [tool.poetry]
 name = "pydantic-secret-decimal"
-version = "0.1.2"
+version = "0.1.0"
 description = "Secret field for Decimal types in Pydantic"
 repository = "https://github.com/expobrain/pydantic-secret-decimal"
 authors = ["Daniele Esposti <daniele.esposti@gmail.com>"]
