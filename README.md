@@ -1,6 +1,6 @@
 # pydantic-secret-decimal
 
-![example branch parameter](https://github.com/expobrain/pydantic-secret-decimal/actions/workflows/main.yml/badge.svg?branch=master)
+[![Unit testing, formatting & linting](https://github.com/expobrain/pydantic-secret-decimal/actions/workflows/main.yml/badge.svg)](https://github.com/expobrain/pydantic-secret-decimal/actions/workflows/main.yml)
 
 This package provides a Pydantic field `SecretDecimal` to store Decimal types as secret the same as the Pydantic's standard `SecretStr` and `SecretBytes` fields (see the [official docs](https://pydantic-docs.helpmanual.io/usage/types/#secret-types)).
 
