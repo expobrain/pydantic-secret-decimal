@@ -3,8 +3,12 @@ name: Unit testing, formatting & linting
 on:
   - push
 
+env:
+  PYTHON_VERSION_FOR_BUMPING: "3.11"
+  POETRY_VERSION: "1.6"
+
 jobs:
-  testing-formatting-linting:
+  testing:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -18,21 +22,38 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Cache multiple Pips
+      - name: Cache multiple paths
         uses: actions/cache@v3
         with:
           path: |
             ~/.cache/pip
-          key: ${{ runner.os }}-{{ matrix.python-version }}-poetry-${{ hashFiles('**/poetry.lock') }}
-      - run: pip install poetry
-      - run: poetry install
+          key: "${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('**/.pre-commit-config.yaml') }}"
+      - run: pip install poetry~=${{ env.POETRY_VERSION }}
+      - run: poetry install --sync
       - run: poetry run make test
-      - run: poetry run make check
+
+  linting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION_FOR_BUMPING }}
+      - name: Cache multiple paths
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/pip
+            ~/.cache/pre-commit
+          key: "${{ runner.os }}-${{ env.PYTHON_VERSION_FOR_BUMPING }}-${{ hashFiles('**/.pre-commit-config.yaml') }}"
+      - run: pip install pre-commit
+      - run: pre-commit run --all-files
 
   bump-version:
     if: github.ref_name == 'master' && !startsWith(github.event.head_commit.message, 'bump:')
     needs:
-      - testing-formatting-linting
+      - testing
+      - linting
     runs-on: ubuntu-latest
     name: "Bump version and create changelog with commitizen"
     steps:
@@ -54,7 +75,7 @@ jobs:
           key: ${{ runner.os }}-${{ env.PYTHON_VERSION_FOR_BUMPING }}-poetry-${{ hashFiles('**/poetry.lock') }}
       - name: Install dependencies
         run: |
-          pip install poetry
+          pip install poetry~=${{ env.POETRY_VERSION }}
           poetry install --with dev --no-interaction --no-ansi --sync
 
       - name: Create new version and changelog

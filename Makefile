@@ -1,25 +1,4 @@
-.SILENT: fmt check lint
-
-fmt:
-	autoflake \
-		--in-place \
-		--remove-all-unused-imports \
-		--ignore-init-module-imports \
-		-r \
-		pydantic_secret_decimal*.py
-	isort --profile black .
-	black .
-
-check:
-	autoflake \
-		--in-place \
-		--remove-all-unused-imports \
-		--ignore-init-module-imports \
-		-r \
-		-c \
-		pydantic_secret_decimal*.py
-	isort --profile black -c .
-	black --check .
+.SILENT: lint
 
 lint:
 	mypy pydantic_secret_decimal*.py

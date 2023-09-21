@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import warnings
 from decimal import Decimal
-from typing import TYPE_CHECKING, Any, Dict
+from typing import TYPE_CHECKING, Any
 
 from pydantic.utils import update_not_none
 from pydantic.validators import decimal_validator
@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 
 class SecretDecimal:
     @classmethod
-    def __modify_schema__(cls, field_schema: Dict[str, Any]) -> None:
+    def __modify_schema__(cls, field_schema: dict[str, Any]) -> None:
         update_not_none(field_schema, type="Decimal", writeOnly=True, format="password")
 
     @classmethod
@@ -46,6 +46,7 @@ class SecretDecimal:
         warnings.warn(
             "`pydantic_secret_decimal.display()` is deprecated, use `str(secret_decimal)` instead",
             DeprecationWarning,
+            stacklevel=2,
         )
         return str(self)
 
