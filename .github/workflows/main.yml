@@ -55,8 +55,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install poetry
-          # poetry config virtualenvs.in-project true
-          # poetry install --with dev --no-interaction --no-ansi --sync
+          poetry install --with dev --no-interaction --no-ansi --sync
 
       - name: Create new version and changelog
         run: |
