@@ -25,7 +25,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = ">=3.8,<4"
-pydantic = "^1.8"
+pydantic = ">=2,<3"
 
 [tool.poetry.group.dev.dependencies]
 autoflake = "^1.7"
@@ -37,6 +37,7 @@ pytest = "^7.4.2"
 pytest-cov = "^4.1.0"
 flake8 = "^5.0.4"
 commitizen = "^3.8.2"
+pytest-testmon = "^2.0.12"
 
 [tool.commitizen]
 name = "cz_conventional_commits"
