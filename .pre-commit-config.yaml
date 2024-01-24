@@ -5,7 +5,7 @@ default_install_hook_types:
   - commit-msg
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.5.0
     hooks:
       - id: check-case-conflict
       - id: check-docstring-first
@@ -29,7 +29,7 @@ repos:
           - --autofix
       - id: trailing-whitespace
   - repo: https://github.com/myint/autoflake
-    rev: v2.1.1
+    rev: v2.2.1
     hooks:
       - id: autoflake
         args:
@@ -41,24 +41,24 @@ repos:
             "--remove-duplicate-keys",
           ]
   - repo: https://github.com/pycqa/flake8
-    rev: 6.0.0
+    rev: 7.0.0
     hooks:
       - id: flake8
         additional_dependencies:
           - flake8-bugbear
           - flake8-datetime-utcnow-plugin
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.4.0
+    rev: v3.15.0
     hooks:
       - id: pyupgrade
         args:
           - "--py38-plus"
   - repo: https://github.com/pycqa/isort
-    rev: 5.12.0
+    rev: 5.13.2
     hooks:
       - id: isort
   - repo: https://github.com/pycqa/bandit
-    rev: 1.7.5
+    rev: 1.7.7
     hooks:
       - id: bandit
         args:
@@ -67,7 +67,7 @@ repos:
           - "--exclude"
           - "pydantic_secret_decimal_test.py"
   - repo: https://github.com/pycqa/bandit
-    rev: 1.7.5
+    rev: 1.7.7
     hooks:
       - id: bandit
         args:
@@ -76,7 +76,7 @@ repos:
           - "-lll"
           - "pydantic_secret_decimal_test.py"
   - repo: https://github.com/psf/black
-    rev: 23.3.0
+    rev: 23.12.1
     hooks:
       - id: black
   - repo: https://github.com/pre-commit/pygrep-hooks
@@ -89,7 +89,7 @@ repos:
       - id: python-no-log-warn
       - id: python-no-eval
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: 3.2.2
+    rev: v3.13.0
     hooks:
       - id: commitizen
         stages: [commit-msg]
